@@ -1,7 +1,7 @@
 import React from 'react';
 
-const Task = props => {
-    return <div>Task</div>;
+const Task = ({ task, id }) => {
+    return <li>{task}</li>;
 }
 
 export default Task;
