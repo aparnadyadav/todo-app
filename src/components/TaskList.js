@@ -1,12 +1,12 @@
 import React from 'react';
 import Task from './Task';
 
-const TaskList = ({ tasks }) => {
+const TaskList = ({ tasks, deleteTask }) => {
    var renderedList = tasks.map((task, id) => {
-       return <Task key={id} task={task} />
+       return <Task key={id} task={task} deleteTask={deleteTask} />
    })
 
-   return <ul>{renderedList}</ul>;
+   return <ul className="ui list">{renderedList}</ul>;
 }
 
 export default TaskList;
