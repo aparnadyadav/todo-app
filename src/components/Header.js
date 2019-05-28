@@ -4,7 +4,6 @@ import LogoutButton from './Auth/LogoutButton';
 const Header = (props) => {
     return (
         <div className="ui secondary pointing menu">
-            TODO
             <div className="right menu">
                 <div className="item"> 
                     <LogoutButton {...props} />

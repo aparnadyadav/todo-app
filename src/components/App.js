@@ -2,8 +2,8 @@ import React from 'react';
 import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from 'react-apollo';
 
-import AddButton from './AddButton';
-import TodoList from './TodoList';
+import AddTodo from './Todo/AddTodo';
+import TodoList from './Todo/TodoList';
 import Header from './Header';
 
 const createApolloClient = authToken => {
@@ -38,7 +38,7 @@ class App extends React.Component {
                                 <div className="five wide column">
                                 </div>
                                 <div className="eleven wide column">
-                                    <AddButton />
+                                    <AddTodo />
                                     <TodoList />
                                 </div>
                                 </div>
