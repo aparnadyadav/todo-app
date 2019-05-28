@@ -6,34 +6,44 @@ import AddButton from './AddButton';
 import TodoList from './TodoList';
 import Header from './Header';
 
-const client = new ApolloClient({
-    uri: 'https://todo-list-tool.herokuapp.com/v1alpha1/graphql'
-});
+const createApolloClient = authToken => {
+    return new ApolloClient({
+        uri: 'https://todo-list-tool.herokuapp.com/v1alpha1/graphql',
+        headers: {
+            Authorization: `Bearer ${authToken}`
+        },
+    });
+}
 
 class App extends React.Component {
-    state = { tasks: [] };
-
-    addTask = task => {
-        this.setState({ tasks: [...this.state.tasks,task] })
-    }
-
-    deleteTask = task => {
-        this.setState(state => {
-            const tasks = this.state.tasks.filter((item) => {
-                return item !== task;
-            });
-
-            return { tasks };
-        });
-    }
+    // componentDidMount() {
+    //     console.log(localStorage.getItem('isLoggedIn'));
+    //     const { renewSession } = this.props.auth;
+    
+    //     if (localStorage.getItem('isLoggedIn') === 'true') {
+    //       renewSession();
+    //     }
+    // }
 
     render() {
+        const client = createApolloClient(this.props.auth.idToken);
+
         return (
             <ApolloProvider client={client}>
                 <div>
                     <Header auth={this.props.auth} {...this.props} />
-                    <AddButton addTask={this.addTask} />
-                    <TodoList tasks={this.state.tasks} deleteTask={this.deleteTask} />
+                    <div className="ui container">
+                        <div className="ui divided relaxed grid">
+                            <div className="row">
+                                <div className="five wide column">
+                                </div>
+                                <div className="eleven wide column">
+                                    <AddButton />
+                                    <TodoList />
+                                </div>
+                                </div>
+                        </div>
+                    </div>
                 </div>
             </ApolloProvider>
         );

@@ -10,6 +10,7 @@ export default class Auth {
         domain: 'graphql-example.auth0.com',
         clientID: 'rEnVTWiL5B1FvUE8f5j9IlBFRUCxmjdU',
         redirectUri: 'http://localhost:3000/callback',
+        audience: `https://graphql-example.auth0.com/api/v2/`,
         responseType: 'token id_token',
         scope: 'openid profile'
     });
@@ -36,8 +37,8 @@ export default class Auth {
 
     setSession = authResult => {
         localStorage.setItem('isLoggedIn', 'true');
+        let expiresAt = (authResult.expiresIn * 1000) + new Date().getTime();
 
-        let expiresAt = (authResult.expiresAt * 1000) + new Date().getTime();
         this.accessToken = authResult.accessToken;
         this.idToken = authResult.idToken;
         this.expiresAt = expiresAt;
@@ -55,7 +56,7 @@ export default class Auth {
              alert(`Could not get a new token (${err.error}: ${err.error_description}).`);
            }
         });
-      }
+    }
 
     logout = () => {
         this.accessToken = null;
@@ -63,13 +64,14 @@ export default class Auth {
         this.expiresAt = 0;
 
         localStorage.removeItem('isLoggedIn');
+        localStorage.removeItem('sub');
 
         this.auth0.logout({
             returnTo: window.location.origin
         });
 
         history.replace('/login');
-      }
+    }
 
     isAuthenticated = () => {
         let expiresAt = this.expiresAt;
