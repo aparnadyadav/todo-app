@@ -6,8 +6,8 @@ import TodoItem from './TodoItem';
 
 const TodoList = ( ) => {
    let renderedList = (todos) => {
-        return todos.map(todo => {
-            return <TodoItem key={todo.id} title={todo.title} />;
+        return todos.map(({ id, title }) => {
+            return <TodoItem key={id} title={title} id={id} />;
         });
     }
 

@@ -1,16 +1,41 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { gql } from 'apollo-boost';
+import { Mutation } from 'react-apollo';
 
-const DeleteTodo = ({ task, deleteTask }) => {
+import GET_TODOS from '../../queries/getTodos';
 
-    const onButtonClick = () => {
-        deleteTask(task);
+class DeleteTodo extends Component {
+    handleIconClick = deleteTodo => {
+        const { id } = this.props;
+
+        deleteTodo({
+            variables: {
+                id
+            }
+        });
     }
 
-    return (
-        <span>
-            <i className="trash icon" onClick={onButtonClick}></i>
-        </span>
-    );
+    render() {
+        return (
+            <Mutation mutation={DELETE_TODO} refetchQueries={[{ query: GET_TODOS }]}>
+                {deleteTodo => {
+                    return (
+                        <span>
+                            <i className="trash icon" onClick={() => this.handleIconClick(deleteTodo)}></i>
+                        </span>
+                    );           
+                }}
+            </Mutation>
+        );
+    }
 }
+
+const DELETE_TODO = gql`
+    mutation DeleteTodos($id: Int!) {
+        delete_todos(where: {id: {_eq: $id}}) {
+            affected_rows
+        }
+    }
+`;
 
 export default DeleteTodo;
