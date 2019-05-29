@@ -7,6 +7,19 @@ import GET_TODOS from '../../queries/getTodos';
 class AddTodo extends Component {
     state = { title: '' }; 
 
+    handleFormSubmit = (event, addTodo) => {
+        event.preventDefault();
+        addTodo({
+            variables: {
+                title: this.state.title
+            }
+        }).then(() => this.setState({ title: '' }));
+    }
+
+    handleInputChange = event => {
+        this.setState({ title: event.target.value })
+    }
+
     render() {
         return (
             <Mutation 
@@ -18,19 +31,12 @@ class AddTodo extends Component {
                         <div>
                             <form
                                 className="ui form"
-                                onSubmit={event => {
-                                    event.preventDefault();
-                                    addTodo({
-                                        variables: { 
-                                            title: this.state.title
-                                        },
-                                    }).then(() => this.setState({ title: '' }));
-                                }}
+                                onSubmit={event => this.handleFormSubmit(event, addTodo)}
                             >
                                 <div className="ui fluid action input field">
                                     <input
                                         placeholder="Add task..."
-                                        onChange={event => this.setState({ title: event.target.value })}
+                                        onChange={event => this.handleInputChange(event)}
                                         value={this.state.title}
                                     />
                                     <button type="submit" className="ui button">
