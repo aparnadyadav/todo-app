@@ -2,9 +2,10 @@ import { gql } from 'apollo-boost';
 
 export default gql`
     {
-        todos {
+        todos(order_by: {id: asc}) {
             id
             title
+            is_completed
         }
     }
 `;
