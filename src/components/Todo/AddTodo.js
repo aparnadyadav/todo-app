@@ -33,15 +33,13 @@ class AddTodo extends Component {
                                 className="ui form"
                                 onSubmit={event => this.handleFormSubmit(event, addTodo)}
                             >
-                                <div className="ui fluid action input field">
+                                <div className="ui transparent fluid left input">
                                     <input
-                                        placeholder="Add task..."
+                                        placeholder="Hey, what needs to be done?"
                                         onChange={event => this.handleInputChange(event)}
                                         value={this.state.title}
                                     />
-                                    <button type="submit" className="ui button">
-                                        Add
-                                    </button>
+                                    {/* <i className=" red plus icon"></i> */}
                                 </div>
                             </form>
                         </div> 

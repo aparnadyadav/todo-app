@@ -20,9 +20,9 @@ class DeleteTodo extends Component {
             <Mutation mutation={DELETE_TODO} refetchQueries={[{ query: GET_TODOS }]}>
                 {deleteTodo => {
                     return (
-                        <span>
+                        <div className="ui icon">
                             <i className="trash icon" onClick={() => this.handleIconClick(deleteTodo)}></i>
-                        </span>
+                        </div>
                     );           
                 }}
             </Mutation>

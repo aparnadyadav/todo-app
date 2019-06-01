@@ -29,7 +29,7 @@ class TodoList extends Component {
                     if (loading) return 'Loading...';
                     if (error) return `Error! ${error.message}`;
                     return (
-                        <div className="ui very relaxed divided list" style={{ listStyleType: 'none' }}>
+                        <div className="ui middle aligned divided list" style={{ listStyleType: 'none' }}>
                             {this.renderedList(data.todos)}
                         </div>
                     );

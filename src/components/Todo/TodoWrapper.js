@@ -24,7 +24,7 @@ class TodoWrapper extends Component {
                         <TodoList filter={this.state.filter} />
                     </div>
                 </div>
-                <div className="ui segment" id="filters">
+                <div className="filters">
                     <FilterTodos setVisibilityFilter={this.setVisibilityFilter} />
                 </div>
             </Fragment>

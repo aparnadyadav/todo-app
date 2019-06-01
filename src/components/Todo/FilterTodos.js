@@ -11,23 +11,24 @@ class FilterTodos extends Component {
         return (
             <Fragment>
                 <button
-                    className="ui labeled icon button"
+                    className="ui small button"
                     onClick={this.onButtonClick("ALL")}
                 >
+                    <i className="tasks icon"></i>
                     All
                 </button>
                 <button
-                    className="ui labeled icon button"
+                    className="ui small button"
                     onClick={this.onButtonClick("COMPLETED")}
                 >
-                    <i className="large check circle outline icon"></i>
+                    <i className="green check circle outline icon"></i>
                     Done 
                 </button>
                 <button
-                    className="ui labeled icon button"
+                    className="ui small button"
                     onClick={this.onButtonClick("ACTIVE")}
                 >
-                    <i className="large red times icon"></i>
+                    <i className="red times icon"></i>
                     Not done
                 </button>
             </Fragment>
