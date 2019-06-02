@@ -1,10 +1,11 @@
 # Todo App
 A simple Todo app that helps you get stuff done.
 
-## Prerequisites
+## Getting started
+### Prerequisites
 -Node >=6.0
 
-## Installation
+### Installation
 Clone the project
 ```
 git clone https://github.com/aparnadyadav/todo-app.git
